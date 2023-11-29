@@ -20,16 +20,13 @@ public class ReservationDateTest {
 
     @Test
     void countdownBeforeChristmas() {
-        ReservationDate reservationDate1 = new ReservationDate(1);
-        int resultDDay1= reservationDate1.christmasCountdown();
-        int expectedDDay1 = 24;
+        int expectedDDayFromDecemberFirst = 24;
+        assertDDay(new ReservationDate(1), expectedDDayFromDecemberFirst);
+        int expectedDDayFromChristmas = 0;
+        assertDDay(new ReservationDate(25), expectedDDayFromChristmas);
+    }
 
-        assertEquals(expectedDDay1, resultDDay1);
-
-        ReservationDate reservationDate2 = new ReservationDate(25);
-        int resultDDay2 = reservationDate2.christmasCountdown();
-        int expectedDDay2 = 0;
-
-        assertEquals(expectedDDay2, resultDDay2);
+    private void assertDDay(ReservationDate reservationDate, int dDay) {
+        assertEquals(reservationDate.christmasCountdown(), dDay);
     }
 }
