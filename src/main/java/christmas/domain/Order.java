@@ -79,7 +79,7 @@ public class Order {
         return false;
     }
 
-    public int getDessertCount() {
+    public int findDessertQuantity() {
         int dessertCount = 0;
         for(Menu menu : Menu.values()) {
             if(menu.findMenuType(food) == "dessert"){
@@ -89,5 +89,23 @@ public class Order {
         }
 
         return dessertCount;
+    }
+
+    public String menuType() {
+        String menuType = "";
+
+        for(Menu menu : Menu.values()) {
+            menuType = menu.findMenuType(food);
+
+            if(menuType != "") {
+                break;
+            }
+        }
+
+        return menuType;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

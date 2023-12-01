@@ -77,7 +77,31 @@ public class OrderTest {
     }
 
     private void assertDessertCount(Order order, int expectedDessertCount) {
-        int realDessertCount = order.getDessertCount();
+        int realDessertCount = order.findDessertQuantity();
         assertEquals(expectedDessertCount, realDessertCount);
+    }
+
+    @Test
+    void getMenuTypeAsSameAsOrder() {
+        String expectedMenuType1 = "drink";
+        assertMenuType(new Order("제로콜라-1"), expectedMenuType1);
+
+        String expectedMenuType2 = "main";
+        assertMenuType(new Order("바비큐립-1"), expectedMenuType2);
+    }
+
+    private void assertMenuType(Order order, String expectedMenuType) {
+        String realMenuType = order.menuType();
+
+        assertEquals(expectedMenuType, realMenuType);
+    }
+
+    @Test
+    void getQuantityAsOrderHas() {
+        Order order = new Order("해산물파스타-5");
+        int realQuantity = order.getQuantity();
+
+        int expectedQuantity = 5;
+        assertEquals(expectedQuantity, realQuantity);
     }
 }

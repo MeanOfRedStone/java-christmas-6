@@ -43,4 +43,16 @@ public class OrderListTest {
         int realTotalDessertCount = orderList.getTotalDessertCount();
         assertEquals(expectedTotalCount, realTotalDessertCount);
     }
+
+    @Test
+    void createOrderListOnlyConsistsOfDrink() {
+        assertThatThrownBy(() -> new OrderList(new String[] {"제로콜라-2", "레드와인-1"}))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void createOrderListThatOfTotalCountOverTwenty() {
+        assertThatThrownBy(() -> new OrderList(new String[]{"바비큐립-4", "해산물파스타-4", "초코케이크-5", "제로콜라-4", "레드와인-4"}))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
