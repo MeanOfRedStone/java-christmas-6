@@ -12,7 +12,7 @@ public class ChristmasEvent {
         this.reservationDate = reservationDate;
     }
 
-    public int calculateDDayDiscount() {
+    public int dDayDiscount() {
         int totalPrice = orderList.checkOut();
         int discount = 0;
 
@@ -36,7 +36,7 @@ public class ChristmasEvent {
         return false;
     }
 
-    public int calculateWeekDayDiscount() {
+    public int weekDayDiscount() {
         int totalPrice = orderList.checkOut();
         int discount = 0;
 
@@ -51,7 +51,7 @@ public class ChristmasEvent {
         return discount;
     }
 
-    public int calculateWeekendDiscount() {
+    public int weekendDiscount() {
         if(reservationDate.isWeekDay()) {
             return 0;
         }
