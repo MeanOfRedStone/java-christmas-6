@@ -70,4 +70,12 @@ public class OrderList {
 
         return count;
     }
+
+    public int findTotalMainQuantity() {
+        int count = 0;
+        for(Order order : orders) {
+            count += order.findMainQuantity();
+        }
+        return count;
+    }
 }

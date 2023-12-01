@@ -50,4 +50,12 @@ public class ChristmasEvent {
 
         return discount;
     }
+
+    public int calculateWeekendDiscount() {
+        if(reservationDate.isWeekDay()) {
+            return 0;
+        }
+
+        return 2023 * orderList.findTotalMainQuantity();
+    }
 }

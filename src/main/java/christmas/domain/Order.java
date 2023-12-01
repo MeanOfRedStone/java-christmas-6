@@ -108,4 +108,18 @@ public class Order {
     public int getQuantity() {
         return quantity;
     }
+
+    public int findMainQuantity() {
+        int mainQuantity = 0;
+
+        for(Menu menu : Menu.values()) {
+            String menuType = menu.findMenuType(food);
+            if(menuType.equals("main")){
+                mainQuantity = quantity;
+                break;
+            }
+        }
+
+        return mainQuantity;
+    }
 }
