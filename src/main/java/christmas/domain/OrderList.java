@@ -8,9 +8,10 @@ public class OrderList {
 
     public OrderList(String[] inputOrders) throws IllegalArgumentException{
         List<Order> orders = new ArrayList<>();
+
         for(String inputOrder : inputOrders){
             Order order = new Order(inputOrder);
-            findDuplicatedOrderInOrderList(order, orders);
+            checkDuplicatedOrder(order, orders);
             orders.add(order);
         }
         checkHasOnlyDrink(orders);
@@ -18,7 +19,7 @@ public class OrderList {
         this.orders = orders;
     }
 
-    private void findDuplicatedOrderInOrderList(Order order, List<Order> orders) throws IllegalArgumentException {
+    private void checkDuplicatedOrder(Order order, List<Order> orders) throws IllegalArgumentException {
         for(Order orderInList : orders){
             if(orderInList.isSame(order)){
                 throw new IllegalArgumentException();
@@ -30,13 +31,13 @@ public class OrderList {
         boolean isOnlyDrink = true;
 
         for(Order order : orders){
-            if(order.menuType() != "drink") {
+            if(!order.menuType().equals("drink")) {
                 isOnlyDrink = false;
                 break;
             }
         }
 
-        if(isOnlyDrink == true) {
+        if(isOnlyDrink) {
             throw new IllegalArgumentException();
         }
     }
