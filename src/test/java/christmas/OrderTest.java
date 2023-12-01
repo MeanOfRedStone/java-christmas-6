@@ -104,4 +104,22 @@ public class OrderTest {
         int expectedQuantity = 5;
         assertEquals(expectedQuantity, realQuantity);
     }
+
+    @Test
+    void getQuantityWhenOrderIsMain() {
+        int expectedQuantity1 = 0;
+        assertMainQuantity(new Order("아이스크림-1"), expectedQuantity1);
+
+        int expectedQuantity2 = 1;
+        assertMainQuantity(new Order("해산물파스타-1"), expectedQuantity2);
+
+        int expectedQuantity3 = 4;
+        assertMainQuantity(new Order("바비큐립-4"), expectedQuantity3);
+    }
+
+    private void assertMainQuantity(Order order, int expectedMainQuantity) {
+        int realMainQuantity = order.findMainQuantity();
+
+        assertEquals(expectedMainQuantity, realMainQuantity);
+    }
 }

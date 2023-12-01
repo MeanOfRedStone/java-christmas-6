@@ -55,4 +55,22 @@ public class OrderListTest {
         assertThatThrownBy(() -> new OrderList(new String[]{"바비큐립-4", "해산물파스타-4", "초코케이크-5", "제로콜라-4", "레드와인-4"}))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void getCountAsTotalCountOfMainThatOrderListContain() {
+        int expectedMainCount1 = 0;
+        assertTotalMainCount(new OrderList(new String[]{"초코케이크-4"}), expectedMainCount1);
+
+        int expectedMainCount2 = 3;
+        assertTotalMainCount(new OrderList(new String[] {"해산물파스타-3"}), expectedMainCount2);
+
+        int expectedMainCount3 = 5;
+        assertTotalMainCount(new OrderList(new String[] {"해산물파스타-3", "바비큐립-2"}), expectedMainCount3);
+    }
+
+    private void assertTotalMainCount(OrderList orderList, int expectedMainCount) {
+        int realMainCount = orderList.findTotalMainQuantity();
+
+        assertEquals(expectedMainCount, realMainCount);
+    }
 }
