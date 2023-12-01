@@ -40,7 +40,7 @@ public class OrderListTest {
     }
 
     private void assertTotalDessertCount(OrderList orderList, int expectedTotalCount) {
-        int realTotalDessertCount = orderList.getTotalDessertCount();
+        int realTotalDessertCount = orderList.getTotalDessertQuantity();
         assertEquals(expectedTotalCount, realTotalDessertCount);
     }
 
