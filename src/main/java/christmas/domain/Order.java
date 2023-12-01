@@ -48,7 +48,9 @@ public class Order {
     }
 
     public boolean isSame(Order order){
-        boolean isSame = food.equals(order.getFood());
+        String newOrder = order.getFood();
+
+        boolean isSame = food.equals(newOrder);
 
         return isSame;
     }
@@ -82,7 +84,7 @@ public class Order {
     public int findDessertQuantity() {
         int dessertCount = 0;
         for(Menu menu : Menu.values()) {
-            if(menu.findMenuType(food) == "dessert"){
+            if(menu.findMenuType(food).equals("dessert")){
                 dessertCount = quantity;
                 break;
             }
@@ -97,7 +99,7 @@ public class Order {
         for(Menu menu : Menu.values()) {
             menuType = menu.findMenuType(food);
 
-            if(menuType != "") {
+            if(!menuType.isEmpty()) {
                 break;
             }
         }
