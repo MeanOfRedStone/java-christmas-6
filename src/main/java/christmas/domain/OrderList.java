@@ -62,12 +62,20 @@ public class OrderList {
         return price;
     }
 
-    public int getTotalDessertCount() {
-        int count = 0;
+    public int getTotalDessertQuantity() {
+        int totalDessertQuantity = 0;
         for(Order order : orders) {
-            count += order.findDessertQuantity();
+            totalDessertQuantity += order.findDessertQuantity();
         }
 
-        return count;
+        return totalDessertQuantity;
+    }
+
+    public int findTotalMainQuantity() {
+        int totalMainQuantity = 0;
+        for(Order order : orders) {
+            totalMainQuantity += order.findMainQuantity();
+        }
+        return totalMainQuantity;
     }
 }

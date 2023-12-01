@@ -36,7 +36,7 @@ public class ChristmasEventTest {
 
     private void assertDDayDiscount(OrderList orderList, ReservationDate reservationDate, int expectedDiscount) {
         ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
-        int realDiscount = christmasEvent.calculateDDayDiscount();
+        int realDiscount = christmasEvent.dDayDiscount();
         assertEquals(expectedDiscount, realDiscount);
     }
 
@@ -66,7 +66,47 @@ public class ChristmasEventTest {
 
     private void assertWeekDayDiscount(OrderList orderList, ReservationDate reservationDate, int expectedWeekDayDiscount) {
         ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
-        int realWeekDayDiscount = christmasEvent.calculateWeekDayDiscount();
+        int realWeekDayDiscount = christmasEvent.weekDayDiscount();
         assertEquals(expectedWeekDayDiscount, realWeekDayDiscount);
+    }
+
+    @Test
+    void doNotGetWeekendDiscountWhenOrderListDoesNotContainMainOnWeekend() {
+        int expectedWeekendDiscount = 0;
+        assertWeekendDiscount(new OrderList(new String[] {"아이스크림-2", "제로콜라-1"}), new ReservationDate(8), expectedWeekendDiscount);
+    }
+
+    @Test
+    void getWeekendDiscountWhenOrderListContainsMainOnWeekend() {
+        int expectedWeekendDiscount1 = 2023;
+        assertWeekendDiscount(new OrderList(new String[] {"해산물파스타-1", "제로콜라-1"}), new ReservationDate(15), expectedWeekendDiscount1);
+
+        int expectedWeekendDiscount2 = 4046;
+        assertWeekendDiscount(new OrderList(new String[] {"바비큐립-2", "제로콜라-2"}), new ReservationDate(22), expectedWeekendDiscount2);
+    }
+
+    @Test
+    void doNotGetWeekendDiscountWhenOrderListDoesNotContainMainOnWeekDays() {
+        int expectedWeekendDiscount = 0;
+        assertWeekendDiscount(new OrderList(new String[] {"아이스크림-2", "제로콜라-1"}), new ReservationDate(10), expectedWeekendDiscount);
+    }
+
+    @Test
+    void doNotGetWeekendDiscountWhenOrderListContainMainOnWeekDays() {
+        int expectedWeekendDiscount = 0;
+        assertWeekendDiscount(new OrderList(new String[] {"바비큐립-2", "제로콜라-1"}), new ReservationDate(17), expectedWeekendDiscount);
+    }
+
+    @Test
+    void getWeekendDiscountWhenOrderListContainMainOnWeekend() {
+        int expectedWeekendDiscount = 4046;
+        assertWeekendDiscount(new OrderList(new String[] {"바비큐립-2", "제로콜라-1"}), new ReservationDate(16), expectedWeekendDiscount);
+    }
+
+    private void assertWeekendDiscount(OrderList orderList, ReservationDate reservationDate, int expectedWeekendDiscount) {
+        ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
+        int realWeekendDiscount = christmasEvent.weekendDiscount();
+
+        assertEquals(expectedWeekendDiscount, realWeekendDiscount);
     }
 }
