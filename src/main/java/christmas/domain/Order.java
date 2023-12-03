@@ -107,8 +107,8 @@ public class Order {
         return menuType;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int addQuantity(int totalQuantity) {
+        return totalQuantity + quantity;
     }
 
     public int findMainQuantity() {

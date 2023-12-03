@@ -45,7 +45,7 @@ public class ChristmasEvent {
         }
 
         if(isPriceMoreThanTenThousand(totalPrice)){
-            discount = 2023 * orderList.getTotalDessertQuantity();
+            discount = 2023 * orderList.findTotalDessertQuantity();
         }
 
         return discount;
