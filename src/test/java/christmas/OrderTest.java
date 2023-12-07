@@ -97,12 +97,14 @@ public class OrderTest {
     }
 
     @Test
-    void getQuantityAsOrderHas() {
+    void addQuantityAsOrderHas() {
+        int totalQuantity = 0;
         Order order = new Order("해산물파스타-5");
-        int realQuantity = order.getQuantity();
 
-        int expectedQuantity = 5;
-        assertEquals(expectedQuantity, realQuantity);
+        int realTotalQuantity = order.addQuantity(totalQuantity);
+
+        int expectedTotalQuantity = 5;
+        assertEquals(expectedTotalQuantity, realTotalQuantity);
     }
 
     @Test

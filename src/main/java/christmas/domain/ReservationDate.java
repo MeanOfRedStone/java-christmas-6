@@ -2,11 +2,11 @@ package christmas.domain;
 
 public class ReservationDate {
     static final int DATE_OF_CHRISTMAS = 25;
-
     static final int FIRST_DAY_OF_DECEMBER = 1;
     static final int LAST_DAY_OF_DECEMBER = 31;
     static final int DATE_OF_FIRST_FRIDAY = 1;
     static final int DATE_OF_FIRST_SATURDAY = 2;
+    static final int DATE_OF_FIRST_SUNDAY = 3;
     static final int WEEK = 7;
 
     private final int date;
@@ -37,5 +37,12 @@ public class ReservationDate {
         }
 
         return isWeekDay;
+    }
+
+    public boolean isSpecialDay() {
+        if(date == DATE_OF_CHRISTMAS || date % WEEK == DATE_OF_FIRST_SUNDAY) {
+            return true;
+        }
+        return false;
     }
 }

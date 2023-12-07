@@ -45,7 +45,7 @@ public class OrderList {
     private void checkTotalCountLessThanTwenty(List<Order> orders) throws IllegalArgumentException {
         int totalCount = 0;
         for(Order order : orders){
-            totalCount += order.getQuantity();
+            totalCount = order.addQuantity(totalCount);
         }
 
         if(totalCount > 20) {
@@ -62,7 +62,7 @@ public class OrderList {
         return price;
     }
 
-    public int getTotalDessertQuantity() {
+    public int findTotalDessertQuantity() {
         int totalDessertQuantity = 0;
         for(Order order : orders) {
             totalDessertQuantity += order.findDessertQuantity();

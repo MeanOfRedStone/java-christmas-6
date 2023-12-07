@@ -46,4 +46,30 @@ public class ReservationDateTest {
         boolean real = reservationDate.isWeekDay();
         assertEquals(real, expectation);
     }
+
+    @Test
+    void isSpecialDay_dateIsNotChristmasAndSunday_false() {
+        boolean expectation1 = false;
+
+        assertSpecialDay(new ReservationDate(1), expectation1);
+    }
+
+    @Test
+    void isSpecialDay_dateIsChristmasOrSunday_true() {
+        boolean expectation1 = true;
+
+        assertSpecialDay(new ReservationDate(25), expectation1);
+
+        boolean expectation2 = true;
+        assertSpecialDay(new ReservationDate(3), expectation2);
+
+        boolean expectation3 = true;
+        assertSpecialDay(new ReservationDate(10), expectation3);
+    }
+
+    private void assertSpecialDay(ReservationDate reservationDate, boolean expectation) {
+        boolean realExpectation = reservationDate.isSpecialDay();
+
+        assertEquals(expectation, realExpectation);
+    }
 }

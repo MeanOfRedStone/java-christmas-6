@@ -109,4 +109,57 @@ public class ChristmasEventTest {
 
         assertEquals(expectedWeekendDiscount, realWeekendDiscount);
     }
+
+    @Test
+    void specialDiscount_totalPriceUnderTenThousandAndReservationDateIsSpecialEventDay_0() {
+        int expectedSpecialDiscount = 0;
+        assertSpecialDiscount(new OrderList(new String[] {"아이스크림-1", "제로콜라-1"}), new ReservationDate(25), expectedSpecialDiscount);
+    }
+
+    @Test
+    void specialDiscount_totalPriceMoreThanTenThousandAndReservationDateIsSpecialEventDay_1000() {
+        int expectedSpecialDiscount = 1000;
+        assertSpecialDiscount(new OrderList(new String[] {"바비큐립-1", "제로콜라-1"}), new ReservationDate(25), expectedSpecialDiscount);
+    }
+
+    @Test
+    void specialDiscount_totalPriceMoreThanTenThousandAndReservationDateIsNotSpecialEventDay_0() {
+        int expectedSpecialDiscount = 0;
+        assertSpecialDiscount(new OrderList(new String[] {"바비큐립-1", "제로콜라-1"}), new ReservationDate(1), expectedSpecialDiscount);
+    }
+
+    private void assertSpecialDiscount(OrderList orderList, ReservationDate reservationDate, int expectedSpecialDisount) {
+        ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
+        int realSpecialDiscount = christmasEvent.specialDiscount();
+
+        assertEquals(expectedSpecialDisount, realSpecialDiscount);
+    }
+
+    @Test
+    void presentation_totalPriceIsUnderOneHundredTwentyThousand_false() {
+        OrderList orderList1 = new OrderList(new String[] {"바비큐립-1", "제로콜라-1"});
+        ReservationDate reservationDate1 = new ReservationDate(5);
+        ChristmasEvent christmasEvent1 = new ChristmasEvent(orderList1, reservationDate1);
+
+        boolean realExpectation1 = christmasEvent1.presentation();
+        boolean expectation1 = false;
+
+        assertEquals(expectation1, realExpectation1);
+    }
+
+    @Test
+    void presentation_totalPriceIsMoreThanOneHundredTwentyThousand_true() {
+        boolean expectation1 = true;
+        assertPresentation(new OrderList(new String[] {"바비큐립-2", "해산물파스타-1", "제로콜라-3"}), new ReservationDate(8), expectation1);
+
+        boolean expectation2 = true;
+        assertPresentation(new OrderList(new String[] {"티본스테이크-2", "아이스크림-2"}), new ReservationDate(28), expectation2);
+    }
+
+    private void assertPresentation(OrderList orderList, ReservationDate reservationDate, boolean expectation) {
+        ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
+        boolean realExpectation = christmasEvent.presentation();
+
+        assertEquals(expectation, realExpectation);
+    }
 }

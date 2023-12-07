@@ -45,7 +45,7 @@ public class ChristmasEvent {
         }
 
         if(isPriceMoreThanTenThousand(totalPrice)){
-            discount = 2023 * orderList.getTotalDessertQuantity();
+            discount = 2023 * orderList.findTotalDessertQuantity();
         }
 
         return discount;
@@ -57,5 +57,28 @@ public class ChristmasEvent {
         }
 
         return 2023 * orderList.findTotalMainQuantity();
+    }
+
+    public int specialDiscount() {
+        int totalPrice = orderList.checkOut();
+        int discount = 0;
+
+        if(!reservationDate.isSpecialDay()) {
+            return discount;
+        }
+
+        if(isPriceMoreThanTenThousand(totalPrice)){
+            discount = 1000;
+        }
+
+        return discount;
+    }
+
+    public boolean presentation() {
+        if(orderList.checkOut() >= 120_000) {
+            return true;
+        }
+
+        return false;
     }
 }
