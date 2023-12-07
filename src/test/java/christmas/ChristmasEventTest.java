@@ -109,4 +109,29 @@ public class ChristmasEventTest {
 
         assertEquals(expectedWeekendDiscount, realWeekendDiscount);
     }
+
+    @Test
+    void specialDiscount_totalPriceUnderTenThousandAndReservationDateIsSpecialEventDay_0() {
+        int expectedSpecialDiscount = 0;
+        assertSpecialDiscount(new OrderList(new String[] {"아이스크림-1", "제로콜라-1"}), new ReservationDate(25), expectedSpecialDiscount);
+    }
+
+    @Test
+    void specialDiscount_totalPriceMoreThanTenThousandAndReservationDateIsSpecialEventDay_1000() {
+        int expectedSpecialDiscount = 1000;
+        assertSpecialDiscount(new OrderList(new String[] {"바비큐립-1", "제로콜라-1"}), new ReservationDate(25), expectedSpecialDiscount);
+    }
+
+    @Test
+    void specialDiscount_totalPriceMoreThanTenThousandAndReservationDateIsNotSpecialEventDay_0() {
+        int expectedSpecialDiscount = 0;
+        assertSpecialDiscount(new OrderList(new String[] {"바비큐립-1", "제로콜라-1"}), new ReservationDate(1), expectedSpecialDiscount);
+    }
+
+    private void assertSpecialDiscount(OrderList orderList, ReservationDate reservationDate, int expectedSpecialDisount) {
+        ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
+        int realSpecialDiscount = christmasEvent.specialDiscount();
+
+        assertEquals(expectedSpecialDisount, realSpecialDiscount);
+    }
 }
