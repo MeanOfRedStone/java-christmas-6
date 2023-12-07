@@ -58,4 +58,19 @@ public class ChristmasEvent {
 
         return 2023 * orderList.findTotalMainQuantity();
     }
+
+    public int specialDiscount() {
+        int totalPrice = orderList.checkOut();
+        int discount = 0;
+
+        if(!reservationDate.isSpecialDay()) {
+            return discount;
+        }
+
+        if(isPriceMoreThanTenThousand(totalPrice)){
+            discount = 1000;
+        }
+
+        return discount;
+    }
 }
