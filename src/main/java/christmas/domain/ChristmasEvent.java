@@ -73,4 +73,12 @@ public class ChristmasEvent {
 
         return discount;
     }
+
+    public boolean presentation() {
+        if(orderList.checkOut() >= 120_000) {
+            return true;
+        }
+
+        return false;
+    }
 }
