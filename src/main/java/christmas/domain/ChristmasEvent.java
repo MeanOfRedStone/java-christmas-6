@@ -81,4 +81,30 @@ public class ChristmasEvent {
 
         return false;
     }
+
+    public String badge() {
+        int totalDiscount = findTotalDiscount();
+
+        if(totalDiscount >= 5000 && totalDiscount < 10000) {
+            return "star";
+        }
+
+        if(totalDiscount >= 10000 && totalDiscount < 20000) {
+            return "tree";
+        }
+
+        if(totalDiscount >= 20000) {
+            return "santa";
+        }
+
+        return "noBadge";
+    }
+
+    private int findTotalDiscount() {
+        if(orderList.checkOut() >= 120_000) {
+            return dDayDiscount() + weekDayDiscount() + weekendDiscount() + specialDiscount() + 25000;
+        }
+
+        return dDayDiscount() + weekDayDiscount() + weekendDiscount() + specialDiscount();
+    }
 }
