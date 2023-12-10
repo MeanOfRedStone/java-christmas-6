@@ -162,4 +162,52 @@ public class ChristmasEventTest {
 
         assertEquals(expectation, realExpectation);
     }
+
+    @Test
+    void badge_totalDiscountIsMoreThanFiveThousandAndUnderTenThousand_star() {
+        OrderList orderList = new OrderList(new String[] {"바비큐립-1", "아이스크림-2", "제로콜라-3"});
+        ReservationDate reservationDate = new ReservationDate(3);
+        ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
+
+        String realBadge = christmasEvent.badge();
+        String expectedBadge = "star";
+
+        assertEquals(expectedBadge, realBadge);
+    }
+
+    @Test
+    void badge_totalDiscountIsMoreThanTenThousandAndUnderTwentyThousand_tree() {
+        OrderList orderList = new OrderList(new String[] {"바비큐립-1", "아이스크림-4", "제로콜라-3"});
+        ReservationDate reservationDate = new ReservationDate(10);
+        ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
+
+        String realBadge = christmasEvent.badge();
+        String expectedBadge = "tree";
+
+        assertEquals(expectedBadge, realBadge);
+    }
+
+    @Test
+    void badge_totalDiscountIsMoreThanTwentyThousand_tree() {
+        OrderList orderList = new OrderList(new String[] {"바비큐립-2", "해산물파스타-2", "초코케이크-2"});
+        ReservationDate reservationDate = new ReservationDate(15);
+        ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
+
+        String realBadge = christmasEvent.badge();
+        String expectedBadge = "santa";
+
+        assertEquals(expectedBadge, realBadge);
+    }
+
+    @Test
+    void badge_totalDiscountIsUnderFiveThousand_noBadge() {
+        OrderList orderList = new OrderList(new String[] {"초코케이크-1", "제로콜라-1"});
+        ReservationDate reservationDate = new ReservationDate(1);
+        ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
+
+        String realBadge = christmasEvent.badge();
+        String expectedBadge = "noBadge";
+
+        assertEquals(expectedBadge, realBadge);
+    }
 }
