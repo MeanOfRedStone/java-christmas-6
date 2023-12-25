@@ -34,7 +34,6 @@ public class OutputView {
         return moneyConverter.format(money);
     }
 
-    //TODO : (2)주문 메뉴 출력  (5) 혜택 내역 출력 (6) 총혜택 금액 출력 (7) 할인 후 예상 결제 금액 출력 (8) 이벤트 배지 출력
     //TODO : (4) 증정 메뉴 출력
     public void printPresentation() {
         System.out.println("<증정 메뉴>");
@@ -58,20 +57,22 @@ public class OutputView {
         if(!hasAppliedDiscount()) {
             System.out.println("없음");
         }
+
+        System.out.println();
     }
 
     private void printAppliedDiscount() {
         if(christmasEvent.dDayDiscount() != 0) {
-            System.out.println("크리스마스 디데이 할인: -" + splitMoneyBy1000(christmasEvent.dDayDiscount()));
+            System.out.println("크리스마스 디데이 할인: -" + splitMoneyBy1000(christmasEvent.dDayDiscount()) + "원");
         }
         if(christmasEvent.weekDayDiscount() != 0) {
-            System.out.println("평일 할인: -" + splitMoneyBy1000(christmasEvent.weekDayDiscount()));
+            System.out.println("평일 할인: -" + splitMoneyBy1000(christmasEvent.weekDayDiscount()) + "원");
         }
         if(christmasEvent.weekendDiscount() != 0) {
-            System.out.println("주말 할인: -" + splitMoneyBy1000(christmasEvent.weekendDiscount()));
+            System.out.println("주말 할인: -" + splitMoneyBy1000(christmasEvent.weekendDiscount()) + "원");
         }
         if(christmasEvent.specialDiscount() != 0) {
-            System.out.println("특별 할인: -" + splitMoneyBy1000(christmasEvent.specialDiscount()));
+            System.out.println("특별 할인: -" + splitMoneyBy1000(christmasEvent.specialDiscount()) + "원");
         }
     }
 
@@ -85,5 +86,31 @@ public class OutputView {
 
     private int totalDiscount() {
         return christmasEvent.dDayDiscount() + christmasEvent.weekDayDiscount() + christmasEvent.weekendDiscount() + christmasEvent.specialDiscount();
+    }
+
+    // (6) 총혜택 금액 출력
+    public void printTotalDiscount() {
+        System.out.println("<총혜택 금액>");
+        if(totalDiscount() == 0) {
+            System.out.println("0원");
+            System.out.println();
+            return;
+        }
+
+        System.out.println("-" + splitMoneyBy1000(totalDiscount()) + "원");
+        System.out.println();
+    }
+
+    //(7) 할인 후 예상 결제 금액 출력
+    public void printTotalPriceAfterDiscount() {
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(splitMoneyBy1000(orderList.checkOut() - totalDiscount()) + "원");
+        System.out.println();
+    }
+
+    //(8) 이벤트 배지 출력
+    public void printBadge() {
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(christmasEvent.badge());
     }
 }
