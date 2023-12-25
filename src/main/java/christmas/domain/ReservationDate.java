@@ -26,7 +26,7 @@ public class ReservationDate {
         return DATE_OF_CHRISTMAS - getDate();
     }
 
-    private int getDate() {
+    public int getDate() {
         return date;
     }
 
