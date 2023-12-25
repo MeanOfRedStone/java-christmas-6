@@ -72,4 +72,14 @@ public class ReservationDateTest {
 
         assertEquals(expectation, realExpectation);
     }
+
+    @Test
+    void getDate_inputADate_getTheSameDate() {
+        ReservationDate reservationDate = new ReservationDate(5);
+        int realDate = reservationDate.getDate();
+
+        int expectedDate = 5;
+
+        assertEquals(expectedDate, realDate);
+    }
 }
