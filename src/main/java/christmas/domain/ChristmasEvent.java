@@ -86,18 +86,18 @@ public class ChristmasEvent {
         int totalDiscount = findTotalDiscount();
 
         if(totalDiscount >= 5000 && totalDiscount < 10000) {
-            return "star";
+            return "별";
         }
 
         if(totalDiscount >= 10000 && totalDiscount < 20000) {
-            return "tree";
+            return "트리";
         }
 
         if(totalDiscount >= 20000) {
-            return "santa";
+            return "산타";
         }
 
-        return "noBadge";
+        return "없음";
     }
 
     private int findTotalDiscount() {
