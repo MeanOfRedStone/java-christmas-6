@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OrderList {
@@ -77,5 +78,14 @@ public class OrderList {
             totalMainQuantity += order.findMainQuantity();
         }
         return totalMainQuantity;
+    }
+
+    public List<String> request() {
+        List<String> orderList = new ArrayList<>();
+        for(Order order : orders) {
+            orderList.add(order.check());
+        }
+
+        return orderList;
     }
 }

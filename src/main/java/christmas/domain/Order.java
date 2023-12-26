@@ -124,4 +124,8 @@ public class Order {
 
         return mainQuantity;
     }
+
+    public String check() {
+        return food + " " + quantity + "개";
+    }
 }
