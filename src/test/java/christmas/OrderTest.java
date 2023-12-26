@@ -124,4 +124,17 @@ public class OrderTest {
 
         assertEquals(expectedMainQuantity, realMainQuantity);
     }
+
+    @Test
+    void check_inputAOrder_getTheSameOrder() {
+        String expectedOrderCheck = "제로콜라 1개";
+        assertOrderCheck(new Order("제로콜라-1"), expectedOrderCheck);
+
+        String expectedOrderCheck2 = "타파스 2개";
+        assertOrderCheck(new Order("타파스-2"), expectedOrderCheck2);
+    }
+
+    private void assertOrderCheck(Order order, String expectedOrderCheck) {
+        assertEquals(expectedOrderCheck, order.check());
+    }
 }

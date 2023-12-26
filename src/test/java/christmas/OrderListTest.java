@@ -1,7 +1,13 @@
 package christmas;
 
+import christmas.domain.Order;
 import christmas.domain.OrderList;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.Or;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -72,5 +78,18 @@ public class OrderListTest {
         int realMainCount = orderList.findTotalMainQuantity();
 
         assertEquals(expectedMainCount, realMainCount);
+    }
+
+    @Test
+    void getOrders_inputOrders_getTheSameOrders() {
+        List<String> expectedOrderList = Arrays.asList(new String[] {"해산물파스타 1개" ,"아이스크림 1개"});
+        assertOrderList(new OrderList(new String[] {"해산물파스타-1", "아이스크림-1"}), expectedOrderList);
+
+        List<String> expectedOrderList2 = Arrays.asList(new String[] {"타파스 1개", "제로콜라 2개"});
+        assertOrderList(new OrderList(new String[] {"타파스-1", "제로콜라-2"}), expectedOrderList2);
+    }
+
+    private void assertOrderList(OrderList orderList, List<String> expectedOrderList) {
+        assertEquals(expectedOrderList, orderList.request());
     }
 }
