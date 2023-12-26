@@ -22,6 +22,14 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printOrders() {
+        System.out.println("<주문 메뉴>");
+        for(String order : orderList.request()) {
+            System.out.println(order);
+        }
+        System.out.println();
+    }
+
     public void printTotalPrice() {
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(splitMoneyBy1000(orderList.checkOut()) + "원");
@@ -34,7 +42,6 @@ public class OutputView {
         return moneyConverter.format(money);
     }
 
-    //TODO : (4) 증정 메뉴 출력
     public void printPresentation() {
         System.out.println("<증정 메뉴>");
 
@@ -48,7 +55,6 @@ public class OutputView {
         System.out.println("없음");
     }
 
-    //TODO : (5) 혜택 내역 출력
     public void printDiscount() {
         System.out.println("<혜택 내역>");
 
@@ -88,7 +94,6 @@ public class OutputView {
         return christmasEvent.dDayDiscount() + christmasEvent.weekDayDiscount() + christmasEvent.weekendDiscount() + christmasEvent.specialDiscount();
     }
 
-    // (6) 총혜택 금액 출력
     public void printTotalDiscount() {
         System.out.println("<총혜택 금액>");
         if(totalDiscount() == 0) {
@@ -101,14 +106,12 @@ public class OutputView {
         System.out.println();
     }
 
-    //(7) 할인 후 예상 결제 금액 출력
     public void printTotalPriceAfterDiscount() {
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.println(splitMoneyBy1000(orderList.checkOut() - totalDiscount()) + "원");
         System.out.println();
     }
 
-    //(8) 이벤트 배지 출력
     public void printBadge() {
         System.out.println("<12월 이벤트 배지>");
         System.out.println(christmasEvent.badge());
