@@ -1,11 +1,8 @@
 package christmas;
 
-import christmas.domain.Order;
 import christmas.domain.OrderList;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Or;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -82,10 +79,10 @@ public class OrderListTest {
 
     @Test
     void getOrders_inputOrders_getTheSameOrders() {
-        List<String> expectedOrderList = Arrays.asList(new String[] {"해산물파스타 1개" ,"아이스크림 1개"});
+        List<String> expectedOrderList = Arrays.asList("해산물파스타 1개","아이스크림 1개");
         assertOrderList(new OrderList(new String[] {"해산물파스타-1", "아이스크림-1"}), expectedOrderList);
 
-        List<String> expectedOrderList2 = Arrays.asList(new String[] {"타파스 1개", "제로콜라 2개"});
+        List<String> expectedOrderList2 = Arrays.asList("타파스 1개", "제로콜라 2개");
         assertOrderList(new OrderList(new String[] {"타파스-1", "제로콜라-2"}), expectedOrderList2);
     }
 
