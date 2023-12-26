@@ -170,7 +170,7 @@ public class ChristmasEventTest {
         ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
 
         String realBadge = christmasEvent.badge();
-        String expectedBadge = "star";
+        String expectedBadge = "별";
 
         assertEquals(expectedBadge, realBadge);
     }
@@ -182,7 +182,7 @@ public class ChristmasEventTest {
         ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
 
         String realBadge = christmasEvent.badge();
-        String expectedBadge = "tree";
+        String expectedBadge = "트리";
 
         assertEquals(expectedBadge, realBadge);
     }
@@ -194,7 +194,7 @@ public class ChristmasEventTest {
         ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
 
         String realBadge = christmasEvent.badge();
-        String expectedBadge = "santa";
+        String expectedBadge = "산타";
 
         assertEquals(expectedBadge, realBadge);
     }
@@ -206,7 +206,7 @@ public class ChristmasEventTest {
         ChristmasEvent christmasEvent = new ChristmasEvent(orderList, reservationDate);
 
         String realBadge = christmasEvent.badge();
-        String expectedBadge = "noBadge";
+        String expectedBadge = "없음";
 
         assertEquals(expectedBadge, realBadge);
     }
